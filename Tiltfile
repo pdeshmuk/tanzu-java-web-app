@@ -1,10 +1,10 @@
 load('.tanzu/tanzu_tilt_extensions.py', 'tanzu_k8s_yaml')
 
 
-SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", default='index.docker.io/pdeshmuk/tanzu-java-web-app')
+SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", default='index.docker.io/pdeshmuk/tanzu-java-webapp-source')
 LOCAL_PATH = os.getenv("LOCAL_PATH", default='.')
 
-custom_build('index.docker.io/pdeshmuk/tap/tanzu-java-web-app',
+custom_build('index.docker.io/pdeshmuk/tanzu-java-web-app',
     "tanzu apps workload apply -f config/workload.yaml --live-update \
       --local-path " + LOCAL_PATH + " --source-image " + SOURCE_IMAGE + " --yes && \
     .tanzu/wait.sh tanzu-java-web-app",
